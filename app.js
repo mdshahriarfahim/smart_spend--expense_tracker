@@ -102,3 +102,28 @@ function rowHTML(t) {
       <button data-del="${t.id}" aria-label="Delete">Delete</button>
     </li>`;
 }
+
+
+function drawChart() {
+  const byCat = {};
+  txs.filter(t => t.type === 'expense').forEach(t => {
+    byCat[t.category] = (byCat[t.category] || 0) + t.amount;
+  });
+
+  const total = Object.values(byCat).reduce((a, b) => a + b, 0);
+  const entries = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+
+  if (entries.length === 0) {
+    chart.innerHTML = '<p class="hint">Add some expenses to see the breakdown.</p>';
+    return;
+  }
+
+  chart.innerHTML = entries.map(([cat, amt]) => {
+    const pct = total ? Math.round((amt / total) * 100) : 0;
+    return `
+      <div class="bar">
+        <div class="top"><span>${cat}</span><span>৳${amt.toLocaleString()} • ${pct}%</span></div>
+        <div class="track"><div class="fill" style="width:${pct}%"></div></div>
+      </div>`;
+  }).join('');
+}
