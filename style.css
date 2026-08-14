@@ -85,3 +85,58 @@ body {
      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
  }
+ .card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.card .label { margin: 0 0 6px; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; }
+.card h2 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
+.card.highlight { background: linear-gradient(135deg, var(--brand), #8b5cf6); color: white; border: none; }
+.card.highlight .label { color: rgba(255,255,255,0.85); }
+.up { color: var(--up); }
+.down { color: var(--down); }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.panel h3 { margin: 0 0 14px; font-size: 16px; }
+
+form label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+form input, form select {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 14px;
+  font-family: inherit;
+}
+form input:focus, form select:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.primary {
+  width: 100%;
+  margin-top: 8px;
+  background: var(--brand);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform .15s ease, opacity .2s ease;
+}
+.primary:hover { transform: translateY(-1px); opacity: 0.95; }
