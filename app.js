@@ -26,3 +26,41 @@ const themeBtn    = $('#themeBtn');
 initTheme();
 form.date.value = new Date().toISOString().slice(0, 10);
 render();
+
+
+// ---- events ----
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const tx = {
+    id: Date.now().toString(),
+    title: (fd.get('title') || '').toString().trim(),
+    amount: Number(fd.get('amount')),
+    type: fd.get('type'),
+    category: fd.get('category'),
+    date: fd.get('date'),
+  };
+  if (!tx.title || !tx.amount || tx.amount <= 0) return;
+  txs.unshift(tx);
+  save();
+  form.reset();
+  form.date.value = new Date().toISOString().slice(0, 10);
+  render();
+});
+
+list.addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-del]');
+  if (!btn) return;
+  txs = txs.filter((t) => t.id !== btn.dataset.del);
+  save();
+  render();
+});
+
+filterType.addEventListener('change', () => { filter.type = filterType.value; render(); });
+filterCat.addEventListener('change', () => { filter.cat = filterCat.value; render(); });
+searchInp.addEventListener('input', () => { filter.q = searchInp.value.toLowerCase(); render(); });
+
+themeBtn.addEventListener('click', () => {
+  const cur = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  setTheme(cur);
+});
