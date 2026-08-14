@@ -64,3 +64,41 @@ themeBtn.addEventListener('click', () => {
   const cur = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   setTheme(cur);
 });
+
+
+// ---- functions ----
+function render() {
+  const income = txs.filter(t => t.type === 'income').reduce((a, t) => a + t.amount, 0);
+  const expense = txs.filter(t => t.type === 'expense').reduce((a, t) => a + t.amount, 0);
+
+  totalInc.textContent  = '৳' + income.toLocaleString();
+  totalExp.textContent  = '৳' + expense.toLocaleString();
+  balanceEl.textContent = '৳' + (income - expense).toLocaleString();
+
+  const shown = txs.filter((t) => {
+    if (filter.type !== 'all' && t.type !== filter.type) return false;
+    if (filter.cat  !== 'all' && t.category !== filter.cat) return false;
+    if (filter.q && !t.title.toLowerCase().includes(filter.q)) return false;
+    return true;
+  });
+
+  list.innerHTML = shown.map(rowHTML).join('');
+  empty.classList.toggle('hidden', shown.length > 0);
+
+  drawChart();
+}
+
+function rowHTML(t) {
+  const sign = t.type === 'income' ? '+' : '-';
+  const initial = (t.title[0] || '?').toUpperCase();
+  return `
+    <li class="tx ${t.type}">
+      <div class="icon">${initial}</div>
+      <div class="meta">
+        <span class="title">${escapeHtml(t.title)}</span>
+        <span class="sub">${t.category} • ${formatDate(t.date)}</span>
+      </div>
+      <span class="amt">${sign}৳${t.amount.toLocaleString()}</span>
+      <button data-del="${t.id}" aria-label="Delete">Delete</button>
+    </li>`;
+}
