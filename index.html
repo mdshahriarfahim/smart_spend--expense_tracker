@@ -32,3 +32,41 @@
                 <h2 id="balance"><b>TK 0</b>></h2>
             </article>
         </section>
+
+        <section class="grid">
+            <!-- Add Transaction Form -->
+            <form id="txForm" class="panel">
+                <h3>Add Transaction</h3>
+                <label>Title <input type="text" name="title" placeholder="e.g. Grocery" required /></label>
+                <label>Amount <input type="number" name="amount" min="1" step="1" placeholder="0" required /></label>
+                
+                <div class="row">
+                    <label>Type
+                        <select name="type" required>
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                    </label>
+                    <label>Category
+                        <select name="category" required>
+                            <option>Food</option>
+                            <option>Transport</option>
+                            <option>Bills</option>
+                            <option>Shopping</option>
+                            <option>Salary</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+                </div>
+                
+                <label>Date <input type="date" name="date" required /></label>
+                <button type="submit" class="primary">+ Add Transaction</button>
+            </form>
+
+            <!-- Category Chart Panel -->
+            <div class="panel">
+                <h3>Category Breakdown</h3>
+                <div id="chart" class="chart"></div>
+                <p class="hint">Only expense categories are shown.</p>
+            </div>
+        </section>
