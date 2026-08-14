@@ -159,3 +159,53 @@ form input:focus, form select:focus { outline: 2px solid var(--brand); outline-o
   color: var(--fg);
   font-size: 13px;
 }
+.list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.tx {
+  display: grid;
+  grid-template-columns: 44px 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.tx .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.tx.income .icon { background: rgba(16,185,129,0.15); color: var(--up); }
+.tx.expense .icon { background: rgba(239,68,68,0.15); color: var(--down); }
+.tx .meta { display: flex; flex-direction: column; }
+.tx .title { font-weight: 600; font-size: 14px; }
+.tx .sub { color: var(--muted); font-size: 12px; }
+.tx .amt { font-weight: 700; font-variant-numeric: tabular-nums; }
+.tx.income .amt { color: var(--up); }
+.tx.expense .amt { color: var(--down); }
+.tx button {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 12px;
+}
+.tx button:hover { color: var(--down); border-color: var(--down); }
+
+.empty { text-align: center; color: var(--muted); padding: 40px 0; }
+.hidden { display: none; }
+
+.foot { text-align: center; padding: 24px; color: var(--muted); font-size: 13px; }
+
+/* Responsive Styles for Mobile Screens */
+@media (max-width: 800px) {
+  .cards, .grid { grid-template-columns: 1fr; }
+  .tx { grid-template-columns: 44px 1fr auto; }
+  .tx button { grid-column: 1 / -1; justify-self: end; }
+}
