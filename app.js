@@ -127,3 +127,33 @@ function drawChart() {
       </div>`;
   }).join('');
 }
+
+function formatDate(iso) {
+  try {
+    return new Date(iso).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  } catch { return iso; }
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(txs)); }
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
+}
+
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY) || 'light';
+  setTheme(saved);
+}
+
+function setTheme(mode) {
+  document.documentElement.dataset.theme = mode;
+  localStorage.setItem(THEME_KEY, mode);
+  themeBtn.textContent = mode === 'dark' ? '☀️ Light' : '🌙 Dark';
+}
