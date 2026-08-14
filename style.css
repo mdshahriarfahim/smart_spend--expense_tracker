@@ -139,4 +139,23 @@ form input:focus, form select:focus { outline: 2px solid var(--brand); outline-o
   font-size: 14px;
   transition: transform .15s ease, opacity .2s ease;
 }
-.primary:hover { transform: translateY(-1px); opacity: 0.95; }
+.primary:hover { transform: translateY(-1px); opacity: 0.95;
+}
+
+.chart { display: flex; flex-direction: column; gap: 10px; }
+.bar { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.bar .top { display: flex; justify-content: space-between; color: var(--muted); }
+.bar .track { height: 8px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.bar .fill { height: 100%; background: linear-gradient(90deg, var(--brand), #8b5cf6); }
+.hint { color: var(--muted); font-size: 12px; margin: 12px 0 0; }
+
+.filterbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filters select, .filters input {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 13px;
+}
