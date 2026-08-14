@@ -71,9 +71,9 @@ function render() {
   const income = txs.filter(t => t.type === 'income').reduce((a, t) => a + t.amount, 0);
   const expense = txs.filter(t => t.type === 'expense').reduce((a, t) => a + t.amount, 0);
 
-  totalInc.textContent  = '৳' + income.toLocaleString();
-  totalExp.textContent  = '৳' + expense.toLocaleString();
-  balanceEl.textContent = '৳' + (income - expense).toLocaleString();
+  totalInc.textContent  = 'TK ' + income.toLocaleString();
+  totalExp.textContent  = 'TK ' + expense.toLocaleString();
+  balanceEl.textContent = 'TK ' + (income - expense).toLocaleString();
 
   const shown = txs.filter((t) => {
     if (filter.type !== 'all' && t.type !== filter.type) return false;
@@ -98,7 +98,7 @@ function rowHTML(t) {
         <span class="title">${escapeHtml(t.title)}</span>
         <span class="sub">${t.category} • ${formatDate(t.date)}</span>
       </div>
-      <span class="amt">${sign}৳${t.amount.toLocaleString()}</span>
+      <span class="amt">${sign}TK ${t.amount.toLocaleString()}</span>
       <button data-del="${t.id}" aria-label="Delete">Delete</button>
     </li>`;
 }
@@ -122,7 +122,7 @@ function drawChart() {
     const pct = total ? Math.round((amt / total) * 100) : 0;
     return `
       <div class="bar">
-        <div class="top"><span>${cat}</span><span>৳${amt.toLocaleString()} • ${pct}%</span></div>
+        <div class="top"><span>${cat}</span><span>TK${amt.toLocaleString()} • ${pct}%</span></div>
         <div class="track"><div class="fill" style="width:${pct}%"></div></div>
       </div>`;
   }).join('');
@@ -155,5 +155,5 @@ function initTheme() {
 function setTheme(mode) {
   document.documentElement.dataset.theme = mode;
   localStorage.setItem(THEME_KEY, mode);
-  themeBtn.textContent = mode === 'dark' ? '☀️ Light' : '🌙 Dark';
+  themeBtn.textContent = mode === 'dark' ? ' Light' : 'Dark';
 }
