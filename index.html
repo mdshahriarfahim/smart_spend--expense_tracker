@@ -70,3 +70,33 @@
                 <p class="hint">Only expense categories are shown.</p>
             </div>
         </section>
+
+
+        <!-- Transaction List & Filters -->
+        <section class="panel">
+            <div class="filterbar">
+                <h3>Transactions</h3>
+                <div class="filters">
+                    <select id="filterType">
+                        <option value="all">All</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <select id="filterCat">
+                        <option value="all">All categories</option>
+                        <option>Food</option>
+                        <option>Transport</option>
+                        <option>Bills</option>
+                        <option>Shopping</option>
+                        <option>Salary</option>
+                        <option>Other</option>
+                    </select>
+                    <input id="search" type="search" placeholder="Search title..." />
+                </div>
+            </div>
+            
+            <ul id="txList" class="list"></ul>
+            <p id="empty" class="empty hidden">No transactions yet. Add your first one above ↑</p>
+        </section>
+
+    </main>
