@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="SmartSpend - a modern 2026 expense tracker built with vanilla JS." />
     <title>SmartSpend - Track your money</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="" />
 </head>
 <body>
 
@@ -14,3 +14,21 @@
         <div class="brand"><span class="dot"></span> SmartSpend</div>
         <button id="themeBtn" class="ghost">🌙 Dark</button>
     </header>
+
+<main class="wrap">
+
+        <!-- Summary Cards -->
+        <section class="cards">
+            <article class="card">
+                <p class="label">Income</p>
+                <h2 id="totalIncome" class="up"><b>TK 0</b></h2>
+            </article>
+            <article class="card">
+                <p class="label">Expense</p>
+                <h2 id="totalExpense" class="down"><b>TK 0</b>></h2>
+            </article>
+            <article class="card highlight">
+                <p class="label">Balance</p>
+                <h2 id="balance"><b>TK 0</b>></h2>
+            </article>
+        </section>
